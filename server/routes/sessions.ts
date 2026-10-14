@@ -132,6 +132,10 @@ export const create = forge
       })
       .returning()
 
+    if (!created) {
+      return response.badRequest('Failed to create session')
+    }
+
     return response.created(created)
   })
 
@@ -218,6 +222,10 @@ export const changeStatus = forge
         .where(eq(pomodoroSessions.id, id))
 
       const [aggregated] = await fetchAggregated(db, id)
+
+      if (!aggregated) {
+        return response.notFound()
+      }
 
       return response.ok(aggregated)
     }
