@@ -14,15 +14,16 @@ export default function DurationText({ seconds }: { seconds: number }) {
   const secs = Math.floor(seconds % 60)
 
   return (
-    <Text size="4xl" weight="semibold" whiteSpace="nowrap">
+    <Text weight="semibold" whiteSpace="nowrap">
       {hours > 0 && (
         <>
-          {hours}
+          <Text size="4xl">{hours}</Text>
           <Unit label="h" />{' '}
         </>
       )}
-      {minutes.toString().padStart(2, '0')}
-      <Unit label="m" /> {secs.toString().padStart(2, '0')}
+      <Text size="4xl">{minutes.toString().padStart(2, '0')}</Text>
+      <Unit label="m" />{' '}
+      <Text size="4xl">{secs.toString().padStart(2, '0')}</Text>
       <Unit label="s" />
     </Text>
   )
